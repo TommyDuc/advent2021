@@ -9,11 +9,14 @@ with open(this_dir + "/input", mode='r') as file:
 
 moving_sums = [sum(input_[i:i+3]) for i in range(len(input_)-2)]
 
-increase_count = 0
-previous_depth = moving_sums[0]
-for depth in moving_sums[1:]:
-    if previous_depth < depth:
-        increase_count += 1
-    previous_depth = depth
-
-print(increase_count)
+answer = len(
+    list(
+        filter(
+            lambda x: x[0] > x[1],
+            list(
+                zip(moving_sums[1:], moving_sums[:-1])
+            )
+        )
+    )
+)
+print(answer)
