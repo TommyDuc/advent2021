@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 
+import functools
 import os
 
-this_dir = os.path.dirname(__file__)
-
-with open(this_dir + "/input", mode='r') as file:
+with open(f"{os.path.dirname(__file__)}/input", mode='r') as file:
     input_ = [int(line.strip()) for line in file.readlines() if line]
 
-increase_count = 0
-previous_depth = input_[0]
-for depth in input_[1:]:
-    if previous_depth < depth:
-        increase_count += 1
-    previous_depth = depth
-
-print(increase_count)
+answer = len(
+    list(
+        filter(
+            lambda x: x[0] > x[1],
+            list(
+                zip(input_[1:], input_[:-1])
+            )
+        )
+    )
+)
+print(answer)
