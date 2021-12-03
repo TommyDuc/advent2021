@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import functools
 import os
 
 with open(f"{os.path.dirname(__file__)}/input", mode='r') as file:
