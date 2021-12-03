@@ -11,7 +11,6 @@ with open(f"{os.path.dirname(__file__)}/input", mode='r') as file:
 bin_length = len(input_[0])
 
 
-# oh god why
 def get_select_bit(lines, index, func):
     column = ""
     for line in lines:
