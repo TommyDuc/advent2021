@@ -12,33 +12,27 @@ bin_length = len(input_[0])
 
 
 # oh god why
-def get_select_bits(lines, func):
-    columns = list()
-    for bit_index in range(bin_length):
-        columns.append("")
-        for line in lines:
-            columns[bit_index] += line[bit_index]
+def get_select_bit(lines, index, func):
+    column = ""
+    for line in lines:
+        column += line[index]
 
-    select_bits = ""
-    for column in columns:
-        number_of_ones = column.count("1")
-        number_of_zeroes = column.count("0")
-        select_bits += func(number_of_ones, number_of_zeroes)
-
-    return select_bits
+    number_of_ones = column.count("1")
+    number_of_zeroes = column.count("0")
+    return func(number_of_ones, number_of_zeroes)
 
 
 oxygen_candidates = copy.deepcopy(input_)
 for i in range(bin_length):
-    criteria_bits = get_select_bits(oxygen_candidates, lambda ones, zeroes: "1" if ones >= zeroes else "0")
-    oxygen_candidates = list(filter(lambda candidate_str: criteria_bits[i] == candidate_str[i], oxygen_candidates))
+    criteria_bit = get_select_bit(oxygen_candidates, i, lambda ones, zeroes: "1" if ones >= zeroes else "0")
+    oxygen_candidates = list(filter(lambda candidate_str: criteria_bit == candidate_str[i], oxygen_candidates))
     if len(oxygen_candidates) == 1:
         break
 
 c02_candidates = copy.deepcopy(input_)
 for i in range(bin_length):
-    criteria_bits = get_select_bits(c02_candidates, lambda ones, zeroes: "0" if ones >= zeroes else "1")
-    c02_candidates = list(filter(lambda candidate_str: criteria_bits[i] == candidate_str[i], c02_candidates))
+    criteria_bit = get_select_bit(c02_candidates, i, lambda ones, zeroes: "0" if ones >= zeroes else "1")
+    c02_candidates = list(filter(lambda candidate_str: criteria_bit == candidate_str[i], c02_candidates))
     if len(c02_candidates) == 1:
         break
 
