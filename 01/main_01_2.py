@@ -4,7 +4,7 @@ import os
 
 this_dir = os.path.dirname(__file__)
 
-with open(this_dir + "/input", mode='r') as file:
+with open(f"{os.path.dirname(__file__)}/input", mode='r') as file:
     input_ = [int(line.strip()) for line in file.readlines() if line]
 
 moving_sums = [sum(input_[i:i+3]) for i in range(len(input_)-2)]
