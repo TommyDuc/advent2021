@@ -21,14 +21,14 @@ def get_select_bit(lines, index, func):
     return func(number_of_ones, number_of_zeroes)
 
 
-oxygen_candidates = copy.deepcopy(input_)
+oxygen_candidates = copy.copy(input_)
 for i in range(bin_length):
     criteria_bit = get_select_bit(oxygen_candidates, i, lambda ones, zeroes: "1" if ones >= zeroes else "0")
     oxygen_candidates = list(filter(lambda candidate_str: criteria_bit == candidate_str[i], oxygen_candidates))
     if len(oxygen_candidates) == 1:
         break
 
-c02_candidates = copy.deepcopy(input_)
+c02_candidates = copy.copy(input_)
 for i in range(bin_length):
     criteria_bit = get_select_bit(c02_candidates, i, lambda ones, zeroes: "0" if ones >= zeroes else "1")
     c02_candidates = list(filter(lambda candidate_str: criteria_bit == candidate_str[i], c02_candidates))
