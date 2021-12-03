@@ -4,23 +4,37 @@ import os
 
 this_dir = os.path.dirname(__file__)
 
-with open(this_dir + "/input", mode='r') as file:
-    input_ = [line.strip() for line in file.readlines() if line]
+with open(f"{os.path.dirname(__file__)}/input", mode='r') as file:
+    input_ = [line.strip().split() for line in file.readlines() if line]
 
 depth = 0
-horizontal_pos = 0
+position_x = 0
 
-for line in input_:
-    command, pos = line.split()
-    pos = int(pos)
-    if command == "forward":
-        horizontal_pos += pos
-    elif command == "up":
-        depth -= pos
-        depth = max(0, depth)
-    elif command == "down":
-        depth += pos
 
-print(f"depth: {depth}")
-print(f"horizontal pos: {horizontal_pos}")
-print(f"product: {depth * horizontal_pos}")
+def forward(x):
+    global position_x
+    position_x += x
+
+
+def up(x):
+    global depth
+    depth -= x
+    depth = max(0, depth)
+
+
+def down(x):
+    global depth
+    depth += x
+
+
+actions = {
+    "forward": forward,
+    "up": up,
+    "down": down
+}
+
+
+for command_val in input_:
+    actions[command_val[0]](int(command_val[1]))
+
+print(depth * position_x)
