@@ -34,5 +34,22 @@ def get_spawned_fishes(fish_, remaining_generations):
 total_fishes = 0
 for fish in fishes:
     total_fishes += get_spawned_fishes(fish, generations)
-
 print(total_fishes)
+
+ages = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+for fish in fishes:
+    ages[fish] += 1
+
+
+def update_ages():
+    ages_zero = ages[0]
+    for i in range(1, 9):
+        ages[i-1] = ages[i]
+    ages[8] = ages_zero
+    ages[6] += ages_zero
+
+
+for _ in range(generations):
+    update_ages()
+answer2 = sum(ages)
+print(answer2)
