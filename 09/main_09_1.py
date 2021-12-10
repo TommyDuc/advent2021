@@ -10,7 +10,7 @@ grid = list()
 for line in input_:
     numbers = [int(i) for i in line if i != '\n']
     grid.append(numbers)
-height, width = len(grid), len(grid[0])  # Grid is a per the problem definition
+height, width = len(grid), len(grid[0])
 
 
 def get_grid_factor(i_, j_):
