@@ -5,10 +5,10 @@ import os
 with open(f"{os.path.dirname(__file__)}/input", mode='r') as file:
     input_ = [line.strip() for line in file.readlines() if line]
 
-openings = set('([{<')
-closings = set(')]}>')
-open_close_lookup = {'(': ')', '[': ']', '{': '}', '<': '>'}
-bracket_points_lookup = {')': 3, ']': 57, '}': 1197, '>': 25137}
+openings = list('([{<')
+closings = list(')]}>')
+open_close_lookup = dict(zip(openings, closings))
+bracket_points_lookup = dict(zip(closings, [3, 57, 1197, 25137]))
 
 
 def get_last_wrong_bracket(line_: str):
