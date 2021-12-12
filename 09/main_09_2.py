@@ -45,23 +45,23 @@ def find_starting_position_for_new_group():
 sys.setrecursionlimit(height+width)
 
 
-def find_group(i_, j_, group: Group):
+def find_group(i_, j_, group_: Group):
     current = squares[i_][j_]
 
     if current.value == 9:
         return
 
     current.group = group_counter
-    group.count += 1
+    group_.count += 1
 
     if i_ != 0 and squares[i_ - 1][j_].group is None and squares[i_ - 1][j_].value != 9:
-        find_group(i_ - 1, j_, group)
+        find_group(i_ - 1, j_, group_)
     if i_ != height-1 and squares[i_ + 1][j_].group is None and squares[i_ + 1][j_].value != 9:
-        find_group(i_ + 1, j_, group)
+        find_group(i_ + 1, j_, group_)
     if j_ != 0 and squares[i_][j_ - 1].group is None and squares[i_][j_ - 1].value != 9:
-        find_group(i_, j_ - 1, group)
+        find_group(i_, j_ - 1, group_)
     if j_ != width-1 and squares[i_][j_ + 1].group is None and squares[i_][j_ + 1].value != 9:
-        find_group(i_, j_ + 1, group)
+        find_group(i_, j_ + 1, group_)
 
 
 while sum(map(lambda x: x.count, groups)) != square_to_visit:
