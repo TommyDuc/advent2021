@@ -11,7 +11,7 @@ open_close_lookup = dict(zip(openings, closings))
 bracket_points_lookup = dict(zip(closings, [3, 57, 1197, 25137]))
 
 
-def get_last_wrong_bracket(line_: str):
+def get_first_wrong_closing_bracket(line_: str):
     stack = []
     for c in line_:
         if c in openings:
@@ -27,7 +27,7 @@ def get_last_wrong_bracket(line_: str):
 
 answer = 0
 for line in input_:
-    wrong = get_last_wrong_bracket(line)
+    wrong = get_first_wrong_closing_bracket(line)
     if wrong is not None:
         answer += bracket_points_lookup[wrong]
 
