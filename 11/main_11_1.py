@@ -6,9 +6,9 @@ import os
 with open(f"{os.path.dirname(__file__)}/input", mode='r') as file:
     input_ = [line.strip() for line in file.readlines() if line]
 
-raw_grid = list()
+grid = list()
 for line in input_:
-    raw_grid.append(list(map(lambda n: int(n), line)))
+    grid.append(list(map(lambda n: int(n), line)))
 
 
 def grid_iter():
@@ -24,25 +24,25 @@ def neighbors_iter(i_, j_):
 flash_counter = 0
 
 
-def do_cycle2():
+def do_cycle():
     for i_, j_ in grid_iter():
-        raw_grid[i_][j_] += 1
+        grid[i_][j_] += 1
 
     has_changed = True
     while has_changed:
         has_changed = False
         global flash_counter
         for i_, j_ in grid_iter():
-            if raw_grid[i_][j_] > 9:
-                raw_grid[i_][j_] = 0
+            if grid[i_][j_] > 9:
+                grid[i_][j_] = 0
                 flash_counter += 1
                 has_changed = True
                 for i2, j2 in neighbors_iter(i_, j_):
-                    if raw_grid[i2][j2] > 0:
-                        raw_grid[i2][j2] += 1
+                    if grid[i2][j2] > 0:
+                        grid[i2][j2] += 1
 
 
 for cycle in range(1, 101):
-    do_cycle2()
+    do_cycle()
 
 print(flash_counter)
