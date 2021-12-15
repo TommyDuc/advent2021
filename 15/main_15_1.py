@@ -39,8 +39,6 @@ while len(computed_nodes) != height*width:
 
     for neighbor in neighbors_iter(*current_node):
         current_new_value = grid[neighbor[0]][neighbor[1]] + nodes_costs[current_node]
-        if neighbor in computed_nodes:
-            continue
         if nodes_costs[neighbor] is None:
             nodes_costs[neighbor] = current_new_value
         else:
