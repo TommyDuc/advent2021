@@ -33,8 +33,7 @@ def neighbors_iter(i_, j_):
 computed_nodes = set()
 nodes_with_minimum_value = {start}
 while len(computed_nodes) != height*width:
-    tentative_nodes = list(sorted(iter(nodes_with_minimum_value - computed_nodes), key=lambda n: nodes_costs[n]))
-    current_node = tentative_nodes[0]
+    current_node = min(iter(nodes_with_minimum_value - computed_nodes), key=lambda n: nodes_costs[n])
     computed_nodes.add(current_node)
 
     for neighbor in neighbors_iter(*current_node):
